@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mia App UI5</title>
+    <script
+        id="sap-ui-bootstrap"
+        src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+        data-sap-ui-theme="sap_fiori_3"
+        data-sap-ui-resourceroots='{ "mia.app.ui5": "./" }'
+        data-sap-ui-async="true">
+    </script>
+    <script>
+        sap.ui.getCore().attachInit(function () {
+            sap.ui.core.Component.create({
+                name: "mia.app.ui5",
+                manifestFirst: true
+            }).then(function (oComponent) {
+                new sap.m.Shell({
+                    app: new sap.ui.core.ComponentContainer({
+                        component: oComponent
+                    })
+                }).placeAt("content");
+            });
+        });
+    </script>
+</head>
+<body class="sapUiBody" id="content"></body>
+</html>

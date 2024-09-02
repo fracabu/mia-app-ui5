@@ -1,0 +1,41 @@
+<mvc:View controllerName="mia.app.ui5.controller.App"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:l="sap.ui.layout"
+  xmlns:f="sap.ui.layout.form">
+  <App id="app">
+    <pages>
+      <Page title="Calcolatore Costi B&amp;B">
+        <content>
+          <f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+            <f:content>
+              <Label text="Numero notti" />
+              <Input id="numNotti" type="Number" width="100px" />
+
+              <Label text="Costo per notte" />
+              <Input id="costoPerNotte" type="Number" width="100px" />
+
+              <Label text="Percentuale commissioni Airbnb" />
+              <Input id="commissioniAirbnb" type="Number" value="14" width="100px" />
+
+              <Label text="Spese di gestione" />
+              <Input id="speseGestione" type="Number" width="100px"/>
+
+              <Button text="Calcola" press=".onCalcola" width="100px" />
+            </f:content>
+          </f:SimpleForm>
+
+          <Panel headerText="Risultati" class="sapUiResponsiveMargin">
+            <l:VerticalLayout>
+              <Text id="ricavoLordo" />
+              <Text id="cedolareSecca" />
+              <Text id="commissioniAirbnbResult" />
+              <Text id="speseGestioneResult" />
+              <Text id="ricavoNetto" />
+            </l:VerticalLayout>
+          </Panel>
+        </content>
+      </Page>
+    </pages>
+  </App>
+</mvc:View>

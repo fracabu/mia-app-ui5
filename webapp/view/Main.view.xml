@@ -1,0 +1,1 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="mia.app.ui5.controller.Main"></mvc:View> 
