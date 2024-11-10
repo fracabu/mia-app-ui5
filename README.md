@@ -1,79 +1,104 @@
-# 🏨 SAP UI5 - Calcolatore Costi B&B
+# 🏨 Calcolatore Costi B&B - SAP UI5 Application
 
-**Calcolatore Costi B&B** è un'applicazione web sviluppata in SAP UI5 che permette ai gestori di Bed & Breakfast di calcolare, monitorare e ottimizzare i costi operativi. L’applicazione consente di inserire e visualizzare dati relativi a spese, entrate e margini di profitto per migliorare la gestione finanziaria della struttura.
+**Calcolatore Costi B&B** è un'applicazione web SAP UI5 progettata per aiutare i gestori di Bed & Breakfast a calcolare i costi operativi e stimare i ricavi netti da affitti a breve termine. L'app consente di inserire informazioni come il numero di notti, il costo per notte, le commissioni di Airbnb, e le spese di gestione, per poi calcolare i guadagni netti.
 
-## 📋 Descrizione dell'App
+## 🌟 Funzionalità
 
-L'app **Calcolatore Costi B&B** è progettata per essere intuitiva e semplice, fornendo ai gestori di B&B un unico strumento per:
+- **Calcolo del Ricavo Lordo**: Basato sul numero di notti e costo per notte.
+- **Calcolo delle Commissioni di Airbnb**: In base alla percentuale di commissione applicata (predefinita al 14%).
+- **Spese di Gestione**: Consente di inserire le spese operative e di visualizzarle nel risultato.
+- **Calcolo del Ricavo Netto**: Mostra i guadagni netti dopo la detrazione delle commissioni e delle spese di gestione.
 
-- **Gestire i costi operativi**: Inserisci costi come utenze, manutenzione, pulizia e altre spese ricorrenti.
-- **Calcolare le entrate**: Aggiungi dettagli sulle entrate da camere prenotate, servizi extra e pacchetti speciali.
-- **Monitorare il margine di profitto**: Visualizza un riepilogo delle entrate meno i costi per ottenere una panoramica dei margini di profitto.
-- **Generare report personalizzati**: Consente di ottenere report finanziari periodici per analisi approfondite.
+## 📋 Struttura dell'App
 
-## 🌟 Funzionalità Chiave
+- **Componenti principali**:
+  - **View principale**: Un `SimpleForm` per l'inserimento dei dati e un `Panel` per visualizzare i risultati.
+  - **Controller**: Gestisce l'evento di calcolo.
+  - **Router**: Configurato nel `Component.js` per gestire la navigazione e il caricamento asincrono.
 
-- **Inserimento Dati Facile e Veloce**: Aggiungi e aggiorna le voci di costo e di entrata in pochi click.
-- **Supporto per Calcoli Automatici**: L’app effettua i calcoli per il margine di profitto e i totali in modo automatico.
-- **Report Dettagliati**: Esporta i dati in report personalizzabili per analisi mensili, trimestrali o annuali.
-- **Compatibilità Multidispositivo**: L’app è accessibile su desktop, tablet e smartphone per un utilizzo flessibile.
-
-## 📦 Configurazione dell'App
-
-### Metadati
-
-- **ID**: `mia.app.ui5`
-- **Tipo di Applicazione**: SAP UI5
-- **Versione**: 1.0.0
-- **File di Traduzione**: `i18n/i18n.properties`
-
-### Tecnologia
-
-L'applicazione è sviluppata con **SAP UI5**, garantendo un'esperienza utente fluida e dinamica. È compatibile con:
-
-- **Desktop**
-- **Tablet**
-- **Smartphone**
-
-### Dipendenze
-
-L'app utilizza le seguenti librerie SAP UI5:
-
-- `sap.m`: Componenti SAP UI5 per interfacce mobile-first.
-- `sap.ui.core`: Componenti core di SAP UI5.
-- `sap.ui.layout`: Gestione avanzata del layout.
-
-## 🚀 Installazione e Configurazione
+## 🚀 Installazione
 
 1. **Clona il repository**:
 
    ```bash
-   git clone https://github.com/tuo-username/nome-repo-non-parlante.git
-   cd nome-repo-non-parlante
+   git clone https://github.com/tuo-username/nome-repo.git
+   cd nome-repo
    ```
 
-2. **Configura l'ambiente SAP UI5** per eseguire l'applicazione.
+2. **Esegui l'app**: Assicurati di avere un server di sviluppo SAP UI5 configurato. Apri il file `index.html` in un browser con accesso a Internet.
 
-3. **Avvia l'app** attraverso il server di sviluppo SAP.
+3. **Configurazione SAP UI5**: L'app utilizza il tema `sap_fiori_3` e carica il core di SAP UI5 tramite il CDN SAP.
 
-## 🌐 Configurazione Dettagliata UI5
+## 🛠️ Utilizzo
 
-### Root View
+- **Numero di Notti**: Inserisci il numero di notti prenotate.
+- **Costo per Notte**: Specifica il prezzo di una notte.
+- **Commissioni Airbnb**: Imposta la percentuale di commissioni (predefinita al 14%).
+- **Spese di Gestione**: Aggiungi le spese variabili di gestione.
+- **Calcola**: Clicca sul pulsante "Calcola" per ottenere i seguenti risultati:
+  - **Ricavo Lordo**: Totale generato prima delle detrazioni.
+  - **Commissioni Airbnb**: Totale delle commissioni applicate.
+  - **Ricavo Netto**: Guadagno finale dopo commissioni e spese.
 
-- **Nome View**: `mia.app.ui5.view.App`
-- **Tipo**: XML
-- **ID**: `app`
+## 🛠️ Configurazione Tecnica
 
-### Routing
+### Component.js
 
-La configurazione del routing è progettata per gestire le viste principali dell'applicazione:
+Il componente principale inizializza il router per la navigazione asincrona e gestisce la configurazione generale dell'applicazione:
 
-- **Rotta principale**: `/main`
-- **Target**: Vista principale per il calcolo e la visualizzazione dei costi.
+```javascript
+sap.ui.define([
+  "sap/ui/core/UIComponent"
+], function (UIComponent) {
+  "use strict";
 
-### Risorse CSS
+  return UIComponent.extend("mia.app.ui5.Component", {
+    metadata: {
+      manifest: "json"
+    },
 
-Il file `css/style.css` include gli stili personalizzati per migliorare la presentazione dell'app.
+    init: function () {
+      UIComponent.prototype.init.apply(this, arguments);
+      this.getRouter().initialize();
+    }
+  });
+});
+```
+
+### index.html
+
+Il file `index.html` carica il core di SAP UI5 e avvia il componente `mia.app.ui5`:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Mia App UI5</title>
+  <script id="sap-ui-bootstrap"
+    src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+    data-sap-ui-theme="sap_fiori_3"
+    data-sap-ui-resourceroots='{ "mia.app.ui5": "./" }'
+    data-sap-ui-async="true">
+  </script>
+  <script>
+    sap.ui.getCore().attachInit(function () {
+      sap.ui.core.Component.create({
+        name: "mia.app.ui5",
+        manifestFirst: true
+      }).then(function (oComponent) {
+        new sap.m.Shell({
+          app: new sap.ui.core.ComponentContainer({
+            component: oComponent
+          })
+        }).placeAt("content");
+      });
+    });
+  </script>
+</head>
+<body class="sapUiBody" id="content"></body>
+</html>
+```
 
 ## 📄 Licenza
 
